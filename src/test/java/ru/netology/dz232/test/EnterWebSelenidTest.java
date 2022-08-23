@@ -23,7 +23,7 @@ public class EnterWebSelenidTest {
     }
 
     @Test
-    void shouldTestActive() {
+    void shouldActiveUser() {
         var validUser = DataGeneration.Registration.getRegisteredUser("active");
         $("[data-test-id=login] .input__box .input__control").val(validUser.getLogin());
         $("[data-test-id=password] .input__box .input__control").val(validUser.getPassword());
@@ -33,7 +33,7 @@ public class EnterWebSelenidTest {
     }
 
     @Test
-    void shouldTestBlocked() {
+    void shouldBlockedUser() {
         var validUser = DataGeneration.Registration.getRegisteredUser("blocked");
         $("[data-test-id=login] .input__box .input__control").val(validUser.getLogin());
         $("[data-test-id=password] .input__box .input__control").val(validUser.getPassword());
@@ -42,7 +42,7 @@ public class EnterWebSelenidTest {
     }
 
     @Test
-    void shouldTestRandomLoginUnregistered() {
+    void shouldUserRandomLoginUnregistered() {
         var invalidUser = DataGeneration.Registration.getUser("blocked");
         $("[data-test-id=login] .input__box .input__control").val(DataGeneration.Registration.getRandomLogin());
         $("[data-test-id=password] .input__box .input__control").val(invalidUser.getPassword());
@@ -51,7 +51,7 @@ public class EnterWebSelenidTest {
     }
 
     @Test
-    void shouldTestRandomPassUnregistered() {
+    void shouldUserRandomPasswordUnregistered() {
         var invalidUser = DataGeneration.Registration.getUser("blocked");
         $("[data-test-id=login] .input__box .input__control").val(invalidUser.getLogin());
         $("[data-test-id=password] .input__box .input__control").val(DataGeneration.Registration.getRandomPassword());
@@ -60,16 +60,7 @@ public class EnterWebSelenidTest {
     }
 
     @Test
-    void shouldTestRandomPassAndLoginRegistered() {
-        var validUser = DataGeneration.Registration.getRegisteredUser("blocked");
-        $("[data-test-id=login] .input__box .input__control").val(DataGeneration.Registration.getRandomLogin());
-        $("[data-test-id=password] .input__box .input__control").val(DataGeneration.Registration.getRandomPassword());
-        $("[data-test-id=action-login]").click();
-        $("[data-test-id=error-notification] .notification__content").shouldHave(Condition.exactText("Ошибка! " + "Неверно указан логин или пароль"));
-    }
-
-    @Test
-    void shouldTestRandomLoginRegistered() {
+    void shouldUserRandomLoginRegistered() {
         var validUser = DataGeneration.Registration.getRegisteredUser("blocked");
         $("[data-test-id=login] .input__box .input__control").val(DataGeneration.Registration.getRandomLogin());
         $("[data-test-id=password] .input__box .input__control").val(validUser.getPassword());
@@ -78,7 +69,7 @@ public class EnterWebSelenidTest {
     }
 
     @Test
-    void shouldTestRandomPassRegistered() {
+    void shouldUserRandomPasswordRegistered() {
         var validUser = DataGeneration.Registration.getRegisteredUser("blocked");
         $("[data-test-id=login] .input__box .input__control").val(validUser.getLogin());
         $("[data-test-id=password] .input__box .input__control").val(DataGeneration.Registration.getRandomPassword());
@@ -87,7 +78,7 @@ public class EnterWebSelenidTest {
     }
 
     @Test
-    void shouldTestLoginNotification() {
+    void shouldLoginNotification() {
         var validUser = DataGeneration.Registration.getRegisteredUser("active");
         $("[data-test-id=login] .input__box .input__control").val();
         $("[data-test-id=password] .input__box .input__control").val(validUser.getPassword());
@@ -96,20 +87,11 @@ public class EnterWebSelenidTest {
     }
 
     @Test
-    void shouldTestPassNotification() {
+    void shouldPassNotification() {
         var validUser = DataGeneration.Registration.getRegisteredUser("active");
         $("[data-test-id=login] .input__box .input__control").val(validUser.getLogin());
         $("[data-test-id=password] .input__box .input__control").val();
         $("[data-test-id=action-login]").click();
-        $("[data-test-id=password].input_invalid .input__sub").shouldHave(Condition.exactText("Поле обязательно для заполнения"));
-    }
-    @Test
-    void shouldTestBothNotifications() {
-        var validUser = DataGeneration.Registration.getRegisteredUser("active");
-        $("[data-test-id=login] .input__box .input__control").val();
-        $("[data-test-id=password] .input__box .input__control").val();
-        $("[data-test-id=action-login]").click();
-        $("[data-test-id=login].input_invalid .input__sub").shouldHave(Condition.exactText("Поле обязательно для заполнения"));
         $("[data-test-id=password].input_invalid .input__sub").shouldHave(Condition.exactText("Поле обязательно для заполнения"));
     }
 }
