@@ -29,9 +29,7 @@ public class EnterWebSelenidTest {
         $("[data-test-id=password] .input__box .input__control").val(validUser.getPassword());
         $("[data-test-id=action-login]").click();
         $("h2").shouldHave(Condition.exactText("  Личный кабинет"));
-
     }
-
     @Test
     void shouldBlockedUser() {
         var validUser = DataGeneration.Registration.getRegisteredUser("blocked");
@@ -40,7 +38,6 @@ public class EnterWebSelenidTest {
         $("[data-test-id=action-login]").click();
         $("[data-test-id=error-notification] .notification__content").shouldHave(Condition.exactText("Ошибка! " + "Пользователь заблокирован"));
     }
-
     @Test
     void shouldUserRandomLoginUnregistered() {
         var invalidUser = DataGeneration.Registration.getUser("blocked");
@@ -49,7 +46,6 @@ public class EnterWebSelenidTest {
         $("[data-test-id=action-login]").click();
         $("[data-test-id=error-notification] .notification__content").shouldHave(Condition.exactText("Ошибка! " + "Неверно указан логин или пароль"));
     }
-
     @Test
     void shouldUserRandomPasswordUnregistered() {
         var invalidUser = DataGeneration.Registration.getUser("blocked");
@@ -58,7 +54,6 @@ public class EnterWebSelenidTest {
         $("[data-test-id=action-login]").click();
         $("[data-test-id=error-notification] .notification__content").shouldHave(Condition.exactText("Ошибка! " + "Неверно указан логин или пароль"));
     }
-
     @Test
     void shouldUserRandomLoginRegistered() {
         var validUser = DataGeneration.Registration.getRegisteredUser("blocked");
@@ -67,7 +62,6 @@ public class EnterWebSelenidTest {
         $("[data-test-id=action-login]").click();
         $("[data-test-id=error-notification] .notification__content").shouldHave(Condition.exactText("Ошибка! " + "Неверно указан логин или пароль"));
     }
-
     @Test
     void shouldUserRandomPasswordRegistered() {
         var validUser = DataGeneration.Registration.getRegisteredUser("blocked");
